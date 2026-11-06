@@ -9,6 +9,8 @@ Load TypeScript files in any modern browser. No build step, no bundler.
 
 That's the whole setup. `app.ts`, and every `.ts` file it imports, runs as a normal ES module.
 
+**Live demo:** https://thisisezra.github.io/loadts/
+
 ![loadts demo](docs/screenshot.jpg)
 
 ## Why
