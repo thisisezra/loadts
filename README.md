@@ -36,7 +36,14 @@ browser as `ts-strip.js`.
 
 ## Install
 
-Copy the three files from `dist/` to the root of your site:
+Copy the three files from `dist/` to the root of your site. Get them from this repo, or from npm:
+
+```bash
+npm install loadts
+cp node_modules/loadts/dist/* public/
+```
+
+The three files:
 
 ```
 ts.js

@@ -16,6 +16,12 @@
     "dist",
     "THIRD-PARTY-LICENSES.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisisezra/loadts.git"
+  },
+  "homepage": "https://thisisezra.github.io/loadts/",
+  "bugs": "https://github.com/thisisezra/loadts/issues",
   "scripts": {
     "build": "node build/build.mjs",
     "demo": "php -S 127.0.0.1:8977 -t docs"
