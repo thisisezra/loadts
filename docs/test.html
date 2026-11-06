@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>TS loader test</title>
+</head>
+<body>
+<p data-output>pending</p>
+<script src="ts.js"></script>
+<script type="text/typescript" src="./app.ts"></script>
+<script>
+  (() => {
+    const pass = new URLSearchParams(location.search).get("pass") || "1";
+    const report = (fields) => {
+      const params = new URLSearchParams({ pass, ua: navigator.userAgent, ...fields });
+      return fetch(`/__report?${params}`, { cache: "no-store" }).catch(() => {});
+    };
+
+    const finish = async (result) => {
+      clearTimeout(timer);
+      let enumCheck = "not-run";
+      try {
+        await import(`./fixtures/enum.ts?${Date.now()}`);
+        enumCheck = "no-error";
+      } catch (error) {
+        enumCheck = `${error.name}: ${String(error.message).split("\n")[0]}`;
+      }
+      await report({ ...result, enumCheck, controlled: String(Boolean(navigator.serviceWorker && navigator.serviceWorker.controller)), ms: String(Math.round(performance.now())) });
+      if (pass === "1") location.replace("test.html?pass=2");
+    };
+
+    document.addEventListener("typescript:ready", () => {
+      finish({ result: "ok", output: document.querySelector("[data-output]").textContent });
+    });
+    document.addEventListener("typescript:error", (event) => {
+      finish({ result: "error", output: String(event.detail && event.detail.message || event.detail) });
+    });
+    const timer = setTimeout(() => report({ result: "timeout", output: document.querySelector("[data-output]").textContent }), 15000);
+  })();
+</script>
+</body>
+</html>

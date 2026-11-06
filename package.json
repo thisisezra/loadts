@@ -1,0 +1,27 @@
+{
+  "name": "loadts",
+  "version": "0.1.0",
+  "description": "Load TypeScript files in any browser with no build step. Types are erased by a service worker using Amaro, the stripper Node.js uses.",
+  "keywords": [
+    "typescript",
+    "browser",
+    "no-build",
+    "type-stripping",
+    "service-worker",
+    "amaro"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist",
+    "THIRD-PARTY-LICENSES.md"
+  ],
+  "scripts": {
+    "build": "node build/build.mjs",
+    "demo": "php -S 127.0.0.1:8977 -t docs"
+  },
+  "devDependencies": {
+    "amaro": "^1.3.0",
+    "esbuild": "^0.28.2"
+  }
+}
